@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams, useParams } from 'react-router-dom';
 
-function Pagination({ productsPerPage, totalProducts, paginate, isList }) {
+function Pagination({ productsPerPage, totalProducts, paginate, isList, isCategory }) {
   const pageNumbers = [];
 
   const [searchParams] = useSearchParams();
@@ -13,6 +13,9 @@ function Pagination({ productsPerPage, totalProducts, paginate, isList }) {
     keyword = '';
   }
 
+  const { id } = useParams();
+
+
   let pathname;
   if (keyword) {
     pathname = `/products?keyword=${keyword}`;
@@ -20,7 +23,14 @@ function Pagination({ productsPerPage, totalProducts, paginate, isList }) {
     if (isList) {
       pathname = '/admin/productlist';
     } else {
-      pathname = '/products';
+      if (isCategory) {
+        pathname = `/products/categories/${id}`;
+
+      } else {
+        pathname = '/products';
+
+      }
+      
     }
   }
 

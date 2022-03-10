@@ -1,18 +1,24 @@
-import React from 'react';
-import { Card } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Card } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 function Category({ category }) {
   return (
-    <Card style={{ height: '92%' }} className='my-3 p-3 rounded text-center'>
-      <Link to={`/products/categories/${category.id}`}></Link>
+    <Card style={{ height: "92%" }} className="my-3 p-3 rounded text-center">
+      <Link to={`/products/categories/${category.id}`}>
+        <Card.Img
+          variant="top"
+          src={require(`../asset/${category.category_name}.png`)}
+          style={{ height: "200px" }}
+        />
+      </Link>
 
       <Card.Body>
         <Link
           to={`/products/categories/${category.id}`}
-          style={{ textDecoration: 'none' }}
+          style={{ textDecoration: "none" }}
         >
-          <Card.Title as='div' className='my-3'>
+          <Card.Title as="div" className="my-3">
             <h4>
               <strong>{category.category_name}</strong>
             </h4>
