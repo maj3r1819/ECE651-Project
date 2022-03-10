@@ -19,7 +19,7 @@ describe('getCategoryList actions', () => {
     moxios.uninstall();
   });
 
-  it('creates CATEGORY_LIST_SUCCESS after successfuly fetching category detail', () => {
+  it('creates CATEGORY_DETAIL_SUCCESS after successfuly fetching category detail', () => {
     moxios.wait(() => {
       const request = moxios.requests.mostRecent();
       request.respondWith({
@@ -40,4 +40,28 @@ describe('getCategoryList actions', () => {
       expect(store.getActions()).toEqual(expectedActions);
     });
   });
+
+  it('creates CATEGORY_DETAIL_FAIL after failing to fetch categories', () => {
+    moxios.wait(() => {
+      const request = moxios.requests.mostRecent();
+      request.respondWith({
+        status: 404,
+        response:{ message: 'invalid data' }
+      });
+    });
+
+    const expectedActions = [
+      { type: actions.CATEGORY_DETAIL_REQUEST },
+      { type: actions.CATEGORY_DETAIL_FAIL, payload: 'invalid data' },
+    ];
+
+    const store = mockStore({ categories: {} })
+
+    return store.dispatch(listCategoryDetails()).then(() => {
+      // return of async actions
+      expect(store.getActions()).toEqual(expectedActions);
+    });
+  });
+
+
 });
