@@ -23,7 +23,6 @@ function CategoryScreen() {
     dispatch(listCategoryDetails(id));
   }, [dispatch, id]);
 
-  console.log(products);
   let currentproducts = [];
 
   if (!loading) {
