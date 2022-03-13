@@ -7,7 +7,7 @@ function setup() {
   const props = {
     category: {
       id: 1,
-      category_name: 'categoryName',
+      category_name: 'Fruits & Vegetables',
     },
   };
 
@@ -27,6 +27,12 @@ describe('components/Category', () => {
   });
 
   it('should pass category name', () => {
-    expect(wrapper.find('strong').text()).toEqual('categoryName');
+    expect(wrapper.find('strong').text()).toEqual('Fruits & Vegetables');
+  });
+
+  it('should pass category image src', () => {
+    expect(wrapper.find('CardImg').props().src).toEqual(
+      'Fruits & Vegetables.png'
+    );
   });
 });
