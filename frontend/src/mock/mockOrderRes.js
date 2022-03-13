@@ -1,0 +1,37 @@
+export const ORDER_DETAIL = {
+  id: 50,
+  cartItems: [
+    {
+      id: 56,
+      name: "Tomato",
+      quantity: 1,
+      img: "https://i5.walmartimages.ca/images/Enlarge/lu4/853/999999-PLU4853.jpg",
+      price_walmart: "1.540",
+      price_sobeys: "3.990",
+      price_zehrs: "1.770",
+      cart: 50,
+      product: 6,
+    },
+    {
+      id: 57,
+      name: "Lay's Ketchup Potato Chips 235GM",
+      quantity: 1,
+      img: "https://i5.walmartimages.ca/images/Enlarge/796/821/6000201796821.jpg",
+      price_walmart: "2.490",
+      price_sobeys: "2.270",
+      price_zehrs: "2.990",
+      cart: 50,
+      product: 131,
+    },
+  ],
+  user: {
+    id: 12,
+    username: "Hello123",
+    email: "Hello123",
+    namee: "Gaby",
+    isAdminn: false,
+  },
+  total_price_walmart: "123.000",
+  total_price_sobeys: "656.000",
+  total_price_zehrs: "235.000",
+};
