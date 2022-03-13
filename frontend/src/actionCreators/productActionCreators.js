@@ -49,7 +49,6 @@ export const listProductDetails = (id) => async (dispatch) => {
   try {
     dispatch({ type: PRODUCT_DETAIL_REQUEST });
 
-    // const { data } = await axios.get(`https://fakestoreapi.com/products/${id}`);
     const { data } = await axios.get(`${URL}/api/products/${id}`);
 
     dispatch({
