@@ -8,7 +8,9 @@ configure({ adapter: new Adapter() });
 describe('components/Header', () => {
   let spyOnUseSelector;
   let spyOnUseDispatch;
+  let spyOnUseEffect;
   let mockDispatch;
+  let props;
 
   beforeEach(() => {
     var mockState = {
@@ -16,25 +18,26 @@ describe('components/Header', () => {
         categories: [
           {
             id: 1,
-            category_name: 'category1',
+            category_name: 'Fruits & Vegetables',
           },
           {
             id: 2,
-            category_name: 'category2',
+            category_name: 'Meat & Seafood',
           },
         ],
       },
       userLogin: {
         userInfo: [
           {
-            id: 1,
-            namee: 'testName',
+            id: 7,
+            namee: 'chilliam@email.com',
             isAdminn: true,
-            email: 'testName@email.com',
+            email: 'chilliam@email.com',
           },
         ],
       },
     };
+
     // Mock useSelector hook
     spyOnUseSelector = jest
       .spyOn(redux, 'useSelector')
@@ -45,6 +48,15 @@ describe('components/Header', () => {
     // Mock dispatch function returned from useDispatch
     mockDispatch = jest.fn();
     spyOnUseDispatch.mockReturnValue(mockDispatch);
+
+    // Mock useEffect hook
+    spyOnUseEffect = jest
+      .spyOn(React, 'useEffect')
+      .mockImplementation((f) => f());
+
+    // props = {
+    //   fetchCategories: mockDispatch.mockResolvedValue(mockState.categoryList),
+    // };
   });
 
   afterEach(() => {

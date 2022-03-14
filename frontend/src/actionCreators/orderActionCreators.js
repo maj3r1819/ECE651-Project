@@ -78,7 +78,6 @@ export const getOrderDetails = id  => async (dispatch, getState) => {
         config
     )
 
-    console.log(data)
 
     dispatch({
         type: ORDER_DETAILS_SUCCESS,

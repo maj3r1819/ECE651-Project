@@ -24,12 +24,11 @@ function HomeScreen() {
     keyword = '';
   }
 
-  // let search = `?keyword=${keyword}`
-  // console.log(search)
-
   useEffect(() => {
     dispatch(listProducts(keyword));
+    setCurrentPage(1);
   }, [dispatch, keyword]);
+
 
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
