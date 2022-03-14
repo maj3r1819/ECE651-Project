@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 from datetime import timedelta
 from pathlib import Path
 
+
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -126,10 +128,10 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 DATABASES = {
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.sqlite3',
-    #     'NAME': BASE_DIR / 'db.sqlite3',
-    # }
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
 
     # 'default': {
     #     'ENGINE': 'django.db.backends.postgresql',
@@ -140,14 +142,18 @@ DATABASES = {
     #     'POST': '5432',
     # }
 
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'd25e67sd7jam4o',
-        'USER': 'bafhzvjmpggdjf',
-        'PASSWORD': '4d9e53cf92c8e73540a5cf4be99d39da387497008a3801c40fd8691746654dbb',
-        'HOST': 'ec2-3-217-216-13.compute-1.amazonaws.com',
-        'POST': '5432',
-    }
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.postgresql',
+    #     'NAME': 'd25e67sd7jam4o',
+    #     'USER': 'bafhzvjmpggdjf',
+    #     'PASSWORD': '4d9e53cf92c8e73540a5cf4be99d39da387497008a3801c40fd8691746654dbb',
+    #     'HOST': 'ec2-3-217-216-13.compute-1.amazonaws.com',
+    #     'POST': '5432',
+    #     'TEST':{
+    #         'ENGINE': 'django.db.backends.sqlite3',
+    #         'NAME': BASE_DIR / 'db.sqlite3'
+    #     }
+    #}
 }
 
 
