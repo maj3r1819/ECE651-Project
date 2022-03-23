@@ -117,4 +117,15 @@ describe('screens/CartScreen', () => {
     expect(wrapper.exists()).toBe(true);
     expect(mockDispatch).not.toHaveBeenCalled();
   });
+
+  it('test click', () => {
+    const wrapper = mount(
+      <BrowserRouter>
+        <CartScreen />
+      </BrowserRouter>
+    );
+    wrapper.find(Button).map((button) => button.simulate('click'));
+    expect(mockDispatch.mock.calls.length).toEqual(7);
+    expect(mockDispatch).toHaveBeenCalled();
+  });
 });
