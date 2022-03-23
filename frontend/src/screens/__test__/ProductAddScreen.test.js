@@ -4,7 +4,7 @@ import * as redux from 'react-redux';
 import ProductAddScreen from '../ProductAddScreen';
 import Adapter from 'enzyme-adapter-react-16';
 import { BrowserRouter } from 'react-router-dom';
-import { Button } from 'react-bootstrap';
+import { Button, Form } from 'react-bootstrap';
 
 configure({ adapter: new Adapter() });
 
@@ -69,6 +69,15 @@ describe('screens/ProductAddScreen', () => {
         useNavigate: () => mockedUsedNavigate,
       };
     });
+
+    jest.mock('react', () => ({
+      ...jest.requireActual('react'),
+      useState: jest.fn(),
+    }));
+
+    const setState = jest.fn();
+    const useStateMock = (initState: any) => [initState, setState];
+    jest.spyOn(React, 'useState').mockImplementation(useStateMock);
   });
 
   afterEach(() => {
@@ -93,6 +102,26 @@ describe('screens/ProductAddScreen', () => {
     );
     expect(wrapper.exists()).toBe(true);
     expect(mockDispatch).not.toHaveBeenCalled();
+  });
+
+  it('should render name', () => {
+    const wrapper = mount(
+      <BrowserRouter>
+        <ProductAddScreen />
+      </BrowserRouter>
+    );
+    const component = wrapper.find(`[controlId='name']`);
+    expect(component.length).toBe(1);
+  });
+
+  it('should render category', () => {
+    const wrapper = mount(
+      <BrowserRouter>
+        <ProductAddScreen />
+      </BrowserRouter>
+    );
+    const component = wrapper.find(`[controlId='category']`);
+    expect(component.length).toBe(1);
   });
 
   it('should render image', () => {
@@ -144,5 +173,20 @@ describe('screens/ProductAddScreen', () => {
     const component = wrapper.find(Button).simulate('submit');
     expect(mockDispatch.mock.calls.length).toEqual(1);
     expect(mockDispatch).toHaveBeenCalled();
+  });
+
+  it('test onChange', () => {
+    const event = {
+      preventDefault() {},
+      target: { value: 'Hello' },
+    };
+    const wrapper = mount(
+      <BrowserRouter>
+        <ProductAddScreen />
+      </BrowserRouter>
+    );
+    wrapper
+      .find(Form.Control)
+      .map((control) => control.simulate('change', event));
   });
 });

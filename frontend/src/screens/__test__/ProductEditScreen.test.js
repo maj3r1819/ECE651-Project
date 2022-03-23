@@ -4,7 +4,7 @@ import * as redux from 'react-redux';
 import ProductEditScreen from '../ProductEditScreen';
 import Adapter from 'enzyme-adapter-react-16';
 import { BrowserRouter } from 'react-router-dom';
-import { Button } from 'react-bootstrap';
+import { Button, Form } from 'react-bootstrap';
 
 configure({ adapter: new Adapter() });
 
@@ -89,6 +89,15 @@ describe('screens/ProductEditScreen', () => {
         useNavigate: () => mockedUsedNavigate,
       };
     });
+
+    jest.mock('react', () => ({
+      ...jest.requireActual('react'),
+      useState: jest.fn(),
+    }));
+
+    const setState = jest.fn();
+    const useStateMock = (initState: any) => [initState, setState];
+    jest.spyOn(React, 'useState').mockImplementation(useStateMock);
   });
 
   afterEach(() => {
@@ -184,5 +193,20 @@ describe('screens/ProductEditScreen', () => {
     const component = wrapper.find(Button).simulate('submit');
     expect(mockDispatch.mock.calls.length).toEqual(4);
     expect(mockDispatch).toHaveBeenCalled();
+  });
+
+  it('test onChange', () => {
+    const event = {
+      preventDefault() {},
+      target: { value: 'Hello' },
+    };
+    const wrapper = mount(
+      <BrowserRouter>
+        <ProductEditScreen />
+      </BrowserRouter>
+    );
+    wrapper
+      .find(Form.Control)
+      .map((control) => control.simulate('change', event));
   });
 });

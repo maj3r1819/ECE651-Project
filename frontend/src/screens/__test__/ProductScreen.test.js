@@ -58,6 +58,15 @@ describe('screens/ProductScreen', () => {
         useNavigate: () => mockedUsedNavigate,
       };
     });
+
+    jest.mock('react', () => ({
+      ...jest.requireActual('react'),
+      useState: jest.fn(),
+    }));
+
+    const setState = jest.fn();
+    const useStateMock = (initState: any) => [initState, setState];
+    jest.spyOn(React, 'useState').mockImplementation(useStateMock);
   });
 
   afterEach(() => {
@@ -82,5 +91,16 @@ describe('screens/ProductScreen', () => {
     );
     expect(wrapper.exists()).toBe(true);
     expect(mockDispatch).not.toHaveBeenCalled();
+  });
+
+  it('test click', () => {
+    const wrapper = mount(
+      <BrowserRouter>
+        <ProductScreen />
+      </BrowserRouter>
+    );
+    wrapper.find(Button).map((button) => button.simulate('click'));
+    expect(mockDispatch.mock.calls.length).toEqual(1);
+    expect(mockDispatch).toHaveBeenCalled();
   });
 });
