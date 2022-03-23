@@ -14,3 +14,7 @@ class testModels(TestCase):
     def test_cart_item(self):
         name = CartItem.objects.create(name="my_user")
         self.assertEquals(str(name), "my_user")
+
+    def test_cart(self):
+        cart = Cart.objects.create(total_price_walmart = 20 )
+        self.assertEquals(str(cart), '20')
