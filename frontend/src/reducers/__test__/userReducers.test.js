@@ -49,7 +49,7 @@ describe("user reducers", () => {
 
   // userRegisterReducer
   it("should return the initial state", () => {
-    expect(userRegisterReducer(undefined, {})).toEqual({ user: {} });
+    expect(userRegisterReducer(undefined, {})).toEqual({ });
   });
 
   it("should handle USER_REGISTER_REQUEST", () => {
