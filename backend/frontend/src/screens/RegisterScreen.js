@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Form, Button, Row, Col } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
@@ -18,7 +18,7 @@ function RegisterScreen() {
   const navigate = useNavigate();
 
   const userRegister = useSelector((state) => state.userRegister);
-  const { loading, error } = userRegister;
+  const { loading, error, user: newUser } = userRegister;
 
   const user = {
     name: name,
@@ -32,9 +32,14 @@ function RegisterScreen() {
       setInfo('Passwords do not match!');
     } else {
       dispatch(register(user));
-      navigate('/');
     }
   };
+
+  useEffect(() => {
+    if (newUser) {
+      navigate('/');
+    }
+  });
 
   return (
     <div>

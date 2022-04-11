@@ -6,6 +6,7 @@ import {
   USER_REGISTER_REQUEST,
   USER_REGISTER_SUCCESS,
   USER_REGISTER_FAIL,
+  USER_REGISTER_RESET,
 } from '../constants/userConstants';
 import axios from 'axios';
 import { URL } from '../constants/urlConstants';
@@ -37,6 +38,7 @@ export const login = (user) => async (dispatch) => {
 export const logout = () => async (dispatch) => {
   localStorage.removeItem('userInfo');
   dispatch({ type: USER_LOGOUT });
+  dispatch({ type: USER_REGISTER_RESET });
 };
 
 export const register = (user) => async (dispatch) => {
