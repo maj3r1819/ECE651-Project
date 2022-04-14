@@ -12,4 +12,5 @@ django-celery-results
 django-celery-beat
 BeautifulSoup4
 lxml
-
+whitenoise
+gunicorn

@@ -20,7 +20,7 @@ def my_test(self):
         for key in url_class_dict.keys():
             options = webdriver.ChromeOptions()
             options.add_argument("--enable-javascript")
-            driver = webdriver.Chrome('I:/EDUCATIONAL/MASTERS\ECE651/SmartWalletSaver/ECE651-Project/chromedriver.exe',
+            driver = webdriver.Chrome('D:/Waterloo/Winter 22/ECE 651/ECE651-Project/backend/product/chromedriver.exe',
                                       options=options)
             driver.get(key)
             time.sleep(5)

@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-kze($w#o%j@-*3iz&*g2zzj#u_g1m$f-_qgakr%n8&r)e)59o_
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'smart-wallet-saver.herokuapp.com']
 
 
 # Application definition
@@ -92,6 +92,7 @@ SIMPLE_JWT = {
 }
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -194,7 +195,9 @@ STATICFILES_DIRS = [
     BASE_DIR / 'frontend/build/static'
 ]
 
-MEDIA_ROOT = 'static/img'
+MEDIA_ROOT = BASE_DIR / 'static/img'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
@@ -215,3 +218,7 @@ CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
 CRONJOBS = [
     ('*/1 * * * *', 'product.cron.my_task')
 ]
+
+
+if os.getcwd() == '/app':
+    DEBUG = False
